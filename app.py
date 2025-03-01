@@ -224,7 +224,12 @@ async def init_db(auth_data: AuthData):
 # ルートエンドポイントを定義
 @app.get("/")
 async def index():
-    return {"message": "Service is Active"}
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM purchase_requisition")
+    total_count = cur.fetchone()[0]
+    conn.close()
+    return {"message": f"Service is Active. Total documents count: {total_count}"}
 
 if __name__ == "__main__":
     create_table()
