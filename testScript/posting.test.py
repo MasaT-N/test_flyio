@@ -5,7 +5,7 @@ import time
 import yaml
 from typing import Dict
 
-def load_config(config_file="config.yaml"):
+def load_config(config_file=r"C:\github\test_flyio\testScript\config.yaml"):
     """Loads configuration from a YAML file.
 
     Args:
@@ -35,7 +35,7 @@ def main():
     for i in range(1, 6):
         print(f"Test {i}:")
         # Path to the test JSON file (create a test.json file with sample data)
-        json_file_path = os.path.join(os.getcwd(), f'testData/test{i}.json')
+        json_file_path = os.path.join(os.getcwd(), f'C:/github/test_flyio/testData/test{i}.json')
 
         # Run the test
         test_submit_endpoint(submit_url, json_file_path)

@@ -5,7 +5,6 @@ processes = []
 
 [env]
   PORT = "8080"  # ポート番号を変更
-  SECRET_KEY = "fRiuum3a0uUC0FeG" #config.yamlと同一にしてください。
 
 [experimental]
   allowed_public_ports = []

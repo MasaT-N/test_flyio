@@ -34,7 +34,7 @@ def load_config(config_file="config.yaml"):
 
 # 設定ファイルから設定を取得
 config = load_config()
-SECRET_KEY = config.get("secret_key", "your_secret_key_here")
+SECRET_KEY = os.environ.get("SECRET_KEY", "your_secret_key_here")
 DEFAULT_DAYS = config.get("default_days", 30)
 ROOT_URL = config.get("root_url", "http://127.0.0.1:5000")
 SUBMIT_URL = config.get("submit_url", "/submit")

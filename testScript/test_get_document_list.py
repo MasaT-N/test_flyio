@@ -2,7 +2,7 @@ import requests
 import json
 import yaml
 
-def load_config(config_file="config.yaml"):
+def load_config(config_file=r"C:\github\test_flyio\testScript\config.yaml"):
     """Loads configuration from a YAML file.
 
     Args:
