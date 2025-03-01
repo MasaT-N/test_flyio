@@ -153,7 +153,7 @@ def check_secret_key(auth_data: AuthData):
 @app.post(SUBMIT_URL, response_model=Dict)
 async def submit(data: Document):
     insert_data(data)
-    return {"message": "Data inserted successfully"}
+    return {"message": f"document_id {data.document_id} Data inserted successfully"}
 
 # データのリストを取得するエンドポイント
 @app.post(GET_DOCUMENT_LIST_URL, dependencies=[Depends(check_secret_key)], response_model=List[Dict])
