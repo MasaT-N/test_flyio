@@ -78,9 +78,12 @@ def get_db_connection():
     return conn
 
 # テーブル作成関数
-def create_table():
+def create_table(force: bool = False):
     conn = get_db_connection()
     cursor = conn.cursor()
+    if force:
+        cursor.execute("DROP TABLE IF EXISTS purchase_requisition")
+
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS purchase_requisition( 
             document_id INTEGER PRIMARY KEY, 
