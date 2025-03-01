@@ -4,7 +4,7 @@
 * コラボフローからWebhook送信されたデータをSqliteのpurchase_requisitionデータベースのテーブルに格納する。
 * 登録されて蓄積したデータは、get_document_listエンドポイントにセキュリティキーをPOSTするとレスポンスをjsonとして受信できる。
 * get_document_listで得たデータを用いて、update_downloadedエンドポイントで文書IDと対応するdownloadedの値をPOSTするとpurchase_requisitionテーブル上の該当レコードの値を更新することができる。
-* get_document_listとupdate_downloadedの２つのエンドポイントについては、config.yamlに記述したセキュリティキー(secret_key)をPOST送信しなければエラーになるようにする。
+* get_document_listとupdate_downloadedの２つのエンドポイントについては、環境変数に記述したセキュリティキー(SECRET_KEY)をPOST送信しなければエラーになるようにする。
 
 #### リポジトリ内ファイルの説明
 * app.py　・・・　Webアプリの本体(FASTAPI版)
@@ -13,3 +13,8 @@
 * config.yaml.sample　・・・　デプロイ時にリネーム（.sampleを削除）して実運用のパラメータ値に書き換えてconfig.yamlとして保存する。
 * requirements.txt　・・・　必要なPythonモジュールリスト。
 
+#### エンドポイントリスト
+* '/' : ルート。データの総数とDBのサイズが表示される。
+* '/get_document_list' : 登録された文書のリストを取得する。未ダウンロードは全てとダウンロード済みは100件まで
+* '/update_downloaded' : 添付ファイルをダウンロードしたらフラグを更新するためのエンドポイント(document_idを必要とする。)
+* '/init_db' : データベースを一旦クリアする。

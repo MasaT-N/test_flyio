@@ -154,6 +154,19 @@ def check_secret_key(auth_data: AuthData):
         raise HTTPException(status_code=401, detail="Unauthorized")
     return auth_data
 
+# ファイルサイズをKB単位で取得する関数
+def get_file_size_in_kb(file_path)->str:
+    try:
+        # ファイルサイズをバイト単位で取得
+        file_size_bytes = os.path.getsize(file_path)
+        # バイトをメガバイトに変換
+        file_size_kb = file_size_bytes / 1024
+        return f"{file_size_kb:.2f} KB"
+    except FileNotFoundError:
+        return "ファイルが見つかりません。"
+    except Exception as e:
+        return str(e)
+
 # POSTエンドポイントを定義
 @app.post(SUBMIT_URL, response_model=Dict)
 async def submit(data: Document):
@@ -229,7 +242,7 @@ async def index():
     cur.execute("SELECT COUNT(*) FROM purchase_requisition")
     total_count = cur.fetchone()[0]
     conn.close()
-    return {"message": f"Service is Active. Total documents count: {total_count}"}
+    return {"message": f"Service is Active. Total documents count: {total_count}, DB Size: {get_file_size_in_kb('purchase_requisition.db')}"}
 
 if __name__ == "__main__":
     create_table()
