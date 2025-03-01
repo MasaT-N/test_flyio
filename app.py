@@ -40,6 +40,7 @@ ROOT_URL = config.get("root_url", "http://127.0.0.1:5000")
 SUBMIT_URL = config.get("submit_url", "/submit")
 GET_DOCUMENT_LIST_URL = config.get("get_document_list_url", "/get_document_list")
 UPDATE_DOWNLOADED_URL = config.get("update_downloaded_url", "/update_downloaded")
+INIT_DB_URL = "/init_db"
 
 # Pydantic モデルの定義
 class User(BaseModel):
@@ -205,6 +206,12 @@ async def update_downloaded(data: UpdateDownloadedData):
     conn.close()
 
     return {"message": f"downloaded updated for document_id {data.document_id} to {data.downloaded}"}
+
+# テーブルを初期化するエンドポイント
+@app.post(INIT_DB_URL, dependencies=[Depends(check_secret_key)], response_model=Dict)
+async def init_db(auth_data: AuthData):
+    create_table()
+    return {"message": "Database initialized."}
 
 # ルートエンドポイントを定義
 @app.get("/")
