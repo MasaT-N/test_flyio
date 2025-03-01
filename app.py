@@ -11,7 +11,10 @@ from pydantic import BaseModel, Field
 import dotenv
 
 app = FastAPI()
-dotenv.load_dotenv()
+
+# .envファイルが存在する場合は読み込む
+if os.path.exists(".env"):
+    dotenv.load_dotenv()
 
 # 設定ファイルから設定を読み込む
 def load_config(config_file="config.yaml"):
