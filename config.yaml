@@ -1,0 +1,7 @@
+default_days: 30
+root_url: "https://purchase-requisition-app.fly.dev/"
+submit_url: /submit
+get_document_list_url: /get_document_list
+update_downloaded_url: /update_downloaded
+
+
