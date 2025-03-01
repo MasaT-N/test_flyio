@@ -213,7 +213,7 @@ async def update_downloaded(data: UpdateDownloadedData):
 # テーブルを初期化するエンドポイント
 @app.post(INIT_DB_URL, dependencies=[Depends(check_secret_key)], response_model=Dict)
 async def init_db(auth_data: AuthData):
-    create_table()
+    create_table(force=True)
     return {"message": "Database initialized."}
 
 # ルートエンドポイントを定義
