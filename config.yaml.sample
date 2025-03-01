@@ -1,0 +1,6 @@
+secret_key: "your_new_secure_secret_key"
+default_days: 30
+root_url: "http://127.0.0.1:5000"
+submit_url: /submit
+get_document_list_url: /get_document_list
+update_downloaded_url: /update_downloaded
