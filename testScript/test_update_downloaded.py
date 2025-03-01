@@ -1,6 +1,11 @@
 import requests
 import json
 import yaml
+import os
+import dotenv
+
+# .envファイルから環境変数を読み込む
+dotenv.load_dotenv()
 
 def load_config(config_file=r"C:\github\test_flyio\testScript\config.yaml"):
     """Loads configuration from a YAML file.
@@ -56,7 +61,7 @@ if __name__ == "__main__":
     update_downloaded_url = f"{root_url}{config.get('update_downloaded_url', '/update_downloaded')}"
 
     # app.pyのSECRET_KEYと一致させる
-    secret_key = config.get("secret_key", "your_secret_key_here")
+    secret_key = os.environ.get("SECRET_KEY", "your_secret_key_here")
     # 実際に存在するdocument_idを指定する
     document_id = 41677
     #テストケースの追加

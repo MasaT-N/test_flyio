@@ -2,6 +2,10 @@ import requests
 import json
 import yaml
 import os
+import dotenv
+
+# .envファイルから環境変数を読み込む
+dotenv.load_dotenv()
 
 def load_config(config_file=r"C:\github\test_flyio\testScript\config.yaml"):
     """Loads configuration from a YAML file.
@@ -54,6 +58,6 @@ if __name__ == "__main__":
     init_db_url = f"{root_url}{'/init_db'}"
 
     # SECRET_KEY を書き換える（app.pyのSECRET_KEYと一致させる）
-    secret_key = config.get("secret_key", "your_secret_key_here")
+    secret_key = os.environ.get("SECRET_KEY", "your_secret_key_here")
     test_init_db(init_db_url, secret_key)
 

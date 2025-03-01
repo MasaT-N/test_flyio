@@ -8,8 +8,10 @@ from datetime import datetime, timedelta
 from dateutil import parser, tz
 from typing import List, Dict, Any
 from pydantic import BaseModel, Field
+import dotenv
 
 app = FastAPI()
+dotenv.load_dotenv()
 
 # 設定ファイルから設定を読み込む
 def load_config(config_file="config.yaml"):
