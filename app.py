@@ -248,4 +248,5 @@ async def index():
 if __name__ == "__main__":
     create_table()
     import uvicorn
-    uvicorn.run(app)
+    ENV_PORT = os.environ.get("PORT", 8000)
+    uvicorn.run(app,host="0.0.0.0",port=ENV_PORT)
