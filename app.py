@@ -78,9 +78,9 @@ class UpdateDownloadedData(BaseModel):
 
 # SQLiteデータベースに接続する関数
 def get_db_connection():
-    db_path = '/data/purchase_requisition.db'
+    # db_path = '/data/purchase_requisition.db'
+    db_path = os.path.join(os.getcwd(),'purchase_requisition.db')
     conn = sqlite3.connect(db_path)
-    create_table()
     return conn
 
 # テーブル作成関数
@@ -244,10 +244,12 @@ async def index():
     cur.execute("SELECT COUNT(*) FROM purchase_requisition")
     total_count = cur.fetchone()[0]
     conn.close()
-    db_size = get_file_size_in_kb('/data/purchase_requisition.db')
+    # db_size = get_file_size_in_kb('/data/purchase_requisition.db')
+    db_size = get_file_size_in_kb(os.path.join(os.getcwd(),'purchase_requisition.db'))
     return {"message": f"Service is Active. Total documents count: {total_count}. Database size: {db_size}"}
 
 if __name__ == "__main__":
+    create_table()
     import uvicorn
     ENV_PORT = int(os.environ.get("PORT"))
     uvicorn.run(app,host="0.0.0.0", port=ENV_PORT)
