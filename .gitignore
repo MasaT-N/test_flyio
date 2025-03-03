@@ -1,0 +1,11 @@
+.venv
+testData
+__pycache__
+*.pyc
+.env
+download_db/
+.github/
+.vscode/
+testScript/config.yaml
+purchase_requisition.db
+

@@ -16,6 +16,11 @@ kill_timeout = '5s'
 [env]
   PORT = '8080'
 
+
+[mounts]
+  source = "purchase_requisition" # ボリューム名
+  destination = "/data" # コンテナ内のマウントポイント（保存場所）
+
 [http_service]
   internal_port = 8080
   force_https = true
