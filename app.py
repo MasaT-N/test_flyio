@@ -78,7 +78,7 @@ class UpdateDownloadedData(BaseModel):
 
 # SQLiteデータベースに接続する関数
 def get_db_connection():
-    db_path = os.path.join(os.getcwd(), 'purchase_requisition.db')
+    db_path = '/data/purchase_requisition.db'
     conn = sqlite3.connect(db_path)
     return conn
 
