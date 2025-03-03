@@ -19,7 +19,7 @@ kill_timeout = '5s'
 
 [mounts]
   source = "purchase_requisition" # ボリューム名
-  destination = "/data" # コンテナ内のマウントポイント（保存場所）
+  destination = "/data"
 
 [http_service]
   internal_port = 8080

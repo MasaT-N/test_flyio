@@ -243,7 +243,7 @@ async def index():
     cur.execute("SELECT COUNT(*) FROM purchase_requisition")
     total_count = cur.fetchone()[0]
     conn.close()
-    db_size = get_file_size_in_kb(os.path.join(os.getcwd(), 'purchase_requisition.db'))
+    db_size = get_file_size_in_kb('/data/purchase_requisition.db')
     return {"message": f"Service is Active. Total documents count: {total_count}. Database size: {db_size}"}
 
 if __name__ == "__main__":
