@@ -1,9 +1,8 @@
 # flyctl launch added from .gitignore
-**\.gitignore
-**\.venv
-**\config.yaml
-**\testData
-**\__pycache__
-**\*.pyc
-**\.env
-**\download_db
+.gitignore
+.venv/
+testData/
+__pycache__
+/*.pyc
+.env
+/download_db
