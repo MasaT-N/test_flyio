@@ -192,6 +192,7 @@ async def get_document_list(auth_data: AuthData):
         SELECT * FROM purchase_requisition
         WHERE (downloaded = 0)
            OR (downloaded = 1 AND created_at >= ?)
+        ORDER BY created_at DESC
     """
 
     cur.execute(strSQL, (past_date.strftime('%Y-%m-%d %H:%M:%S'),))

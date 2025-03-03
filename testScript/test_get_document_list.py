@@ -3,11 +3,12 @@ import json
 import yaml
 import os
 import dotenv
+import csv
 
 # .envファイルから環境変数を読み込む
 dotenv.load_dotenv()
 
-def load_config(config_file=r"C:\github\test_flyio\testScript\config.yaml"):
+def load_config(config_file=r"D:\git_repo\test_flyio\testScript\config.yaml"):
     """Loads configuration from a YAML file.
 
     Args:
@@ -36,7 +37,7 @@ def test_get_document_list(url, secret_key):
         response = requests.post(url, json=data, headers=headers)  # jsonパラメータに変更
 
         print(f"Status Code: {response.status_code}")
-        print(f"Response Content: {response.text}")
+        # print(f"Response Content: {response.text}")
 
         if response.status_code == 200:
             print("Test passed: Data retrieved successfully.")
@@ -45,6 +46,10 @@ def test_get_document_list(url, secret_key):
                 json_data = response.json()
                 print("Returned JSON Data:")
                 print(json.dumps(json_data, ensure_ascii=False, indent=4))
+                with open('output/test_get_document_list.csv', 'w', encoding='cp932', newline="") as f:
+                    writer = csv.DictWriter(f, fieldnames=json_data[0].keys())
+                    writer.writeheader()
+                    writer.writerows(json_data)
             except json.JSONDecodeError as e:
                 print(f"Error: Could not decode JSON response: {e}")
 
