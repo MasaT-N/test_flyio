@@ -6,7 +6,7 @@ WORKDIR /app
 
 # 依存関係のインストール
 COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt && rm -rf /root/.cache
 
 # アプリケーションコードのコピー
 COPY . .
