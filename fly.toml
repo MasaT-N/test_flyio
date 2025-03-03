@@ -1,0 +1,32 @@
+# fly.toml app configuration file generated for purchase-requisition-app on 2025-03-03T22:21:09+09:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'purchase-requisition-app'
+primary_region = 'sin'
+kill_signal = 'SIGINT'
+kill_timeout = '5s'
+
+[experimental]
+  auto_rollback = true
+
+[build]
+
+[env]
+  PORT = '8080'
+
+[[mounts]]
+  source = 'purchase_requisition'
+  destination = '/data'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
